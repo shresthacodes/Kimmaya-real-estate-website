@@ -50,3 +50,16 @@ export const getAllProperties = asyncHandler(async (req, res) => {
   });
   res.send(properties);
 });
+// to get a specific property
+export const getProperty = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const property = await prisma.property.findUnique({
+        where: { id },
+      });
+      res.send(property);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  });
