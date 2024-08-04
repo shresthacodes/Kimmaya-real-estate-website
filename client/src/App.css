@@ -1,13 +1,13 @@
-.App{
+.App {
   position: relative;
   overflow-x: clip;
+  background-color: white;
 }
-.App>:nth-child(1)
-{
+.App > :nth-child(1) {
   background: var(--black);
   position: relative;
 }
-.white-gradient{
+.white-gradient {
   position: absolute;
   width: 20rem;
   height: 20rem;

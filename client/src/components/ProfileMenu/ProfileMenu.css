@@ -1,0 +1,33 @@
+/* Add this CSS for basic styling */
+.profile-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  cursor: pointer;
+}
+
+.avatar img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.menu-item {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  border: 1px solid #90a78d;
+}
