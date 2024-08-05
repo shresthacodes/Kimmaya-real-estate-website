@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import Property from "./pages/Property/Property";
 import UserDetailContext from "./components/Context/UserDetailContext";
-//import UserDetailContext from "./context/UserDetailContext";
+
 function App() {
   const queryClient = new QueryClient();
 

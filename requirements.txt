@@ -1,0 +1,28 @@
+yarn
+yarn add axios dayjs react-toastify
+yarn add react-query
+yarn add react-router-dom@v6.10.0  
+yarn add express
+nvm install 20.2.0
+npm install express-oauth2-jwt-bearer
+yarn add cookie-parser cors dotenv express-async-handler nodemon prisma @prisma/client
+npm install --global yarn     
+yarn add @mantine/core @mantine/hooks @mantine/dates dayjs
+yarn add react-datepicker
+yarn add react-bootstrap 
+yarn add react-avatar
+yarn add @mantine/core @mantine/dates @mantine/form @mantine/hooks
+yarn add import-analysis
+yarn add @emotion/react
+yarn add @auth0/auth0-react@v2.0.1
+yarn add esri-leaflet-geocoder@2.3.3
+yarn add react-leaflet@v4.2.1 leaflet
+yarn add heart
+yarn add lodash  
+
+
+server
+npx prisma db push
+yarn add react-spinners
+yarn add react-router-dom@v6.10.0
+yarn add express
