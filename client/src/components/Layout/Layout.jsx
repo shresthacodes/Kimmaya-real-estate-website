@@ -9,8 +9,7 @@ import { createUser } from "../../utils/api";
 import { useMutation } from "react-query";
 
 const Layout = () => {
-  const { isAuthenticated, user, getAccessTokenSilently, loginWithPopup } =
-    useAuth0();
+  const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
   const { setUserDetails } = useContext(UserDetailContext);
 
   const { mutate } = useMutation({
@@ -19,41 +18,19 @@ const Layout = () => {
   });
 
   useEffect(() => {
-    const getTokenAndRegister = async () => {
-      try {
-        let token;
-        try {
-          token = await getAccessTokenSilently({
-            authorizationParams: {
-              audience: "http://localhost:3000",
-              scope: "openid profile email",
-            },
-          });
-        } catch (e) {
-          console.error("Silent token retrieval failed:", e);
-          if (e.error === "login_required") {
-            await loginWithPopup({
-              authorizationParams: {
-                audience: "http://localhost:3000",
-                scope: "openid profile email",
-              },
-            });
-            token = await getAccessTokenSilently();
-          } else {
-            throw e;
-          }
-        }
-        localStorage.setItem("access_token", token);
-        setUserDetails((prev) => ({ ...prev, token: token }));
-        mutate(token);
-      } catch (error) {
-        console.error("Error getting token:", error);
-      }
+    const getTokenAndRegsiter = async () => {
+      const res = await getAccessTokenWithPopup({
+        authorizationParams: {
+          audience: "http://localhost:3000",
+          scope: "openid profile email",
+        },
+      });
+      localStorage.setItem("access_token", res);
+      setUserDetails((prev) => ({ ...prev, token: res }));
+      mutate(res);
     };
 
-    if (isAuthenticated) {
-      getTokenAndRegister();
-    }
+    isAuthenticated && getTokenAndRegsiter();
   }, [isAuthenticated]);
 
   return (
