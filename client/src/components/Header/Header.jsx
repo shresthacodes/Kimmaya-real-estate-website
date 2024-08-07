@@ -32,7 +32,6 @@ const Header = () => {
           >
             <NavLink to="/Properties">Properties</NavLink>
             <a href="mailto:kimmayafarms@gmail.com">Contact</a>
-
             {!isAuthenticated ? (
               <button className="button" onClick={loginWithRedirect}>
                 Login
@@ -40,6 +39,7 @@ const Header = () => {
             ) : (
               <ProfileMenu user={user} logout={logout} />
             )}
+            
           </div>
         </OutsideClickHandler>
 

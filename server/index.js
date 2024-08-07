@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import { auth } from "express-oauth2-jwt-bearer";
+
 import { userRoute } from "./routes/userRoutes.js";
 import { propertyRoute } from "./routes/propertyRoute.js";
 dotenv.config();
