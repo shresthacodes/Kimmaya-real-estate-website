@@ -126,7 +126,7 @@ export const getAllFav = async (email, token) => {
       }
     );
 
-    return res.data["favResidenciesID"];
+    return res.data["favPropertyID"];
   } catch (e) {
     toast.error("Something went wrong while fetching favs");
     throw e;
@@ -137,7 +137,7 @@ export const getAllBookings = async (email, token) => {
   if (!token) return;
   try {
     const res = await api.post(
-      `/user/allBookings`,
+      `/user/getBookings`,
       {
         email,
       },
@@ -158,7 +158,7 @@ export const createResidency = async (data, token) => {
   console.log(data);
   try {
     const res = await api.post(
-      `/residency/create`,
+      `/property/create`,
       {
         data,
       },
