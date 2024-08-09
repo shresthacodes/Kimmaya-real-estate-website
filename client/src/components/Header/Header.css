@@ -23,7 +23,7 @@
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
-  }
+  } 
   .h-menu {
     color: var(--black);
     position: absolute;
@@ -40,4 +40,16 @@
     padding: 3rem;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   }
+}
+/* header.css */
+
+/* Add this to your existing CSS */
+.h-menu a,
+.h-menu .nav-link {
+  color: green;
+}
+
+.h-menu a:hover,
+.h-menu .nav-link:hover {
+  color: darkgreen; /* Optional: Darker green on hover */
 }

@@ -28,7 +28,7 @@
 .orange-circle {
   height: 4rem;
   width: 4rem;
-  background: var(--orange-gradient);
+  background: var(--green-gradient);
   border-radius: 999px;
   position: absolute;
   right: 28%;

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Contact.css";
 import { MdCall } from "react-icons/md";
+import { MdVideoCall } from "react-icons/md";
 import { BsFillChatDotsFill } from "react-icons/bs";
 import {HiChatBubbleBottomCenter} from 'react-icons/hi2'
 const Contact = () => {
@@ -9,11 +10,10 @@ const Contact = () => {
       <div className="paddings innerWidth flexCenter c-container">
         {/* left side */}
         <div className="flexColStart c-left">
-          <span className="orangeText">Our Contact Us</span>
+          <span className="orangeText">Our Contacts</span>
           <span className="primaryText">Easy to contact us</span>
           <span className="secondaryText">
-            We always ready to help by providijng the best services for you. We
-            beleive a good blace to live can make your life better{" "}
+          We’re here to assist you with any inquiries or support you need. Reach out to us for personalized assistance, and let us help you find the ideal farmland and farm products to enhance your life.{" "}
           </span>
 
           <div className="flexColStart contactModes">
@@ -51,7 +51,7 @@ const Contact = () => {
               <div className="flexColCenter mode">
                 <div className="flexStart">
                   <div className="flexCenter icon">
-                    <BsFillChatDotsFill size={25} />
+                    <MdVideoCall size={25} />
                   </div>
                   <div className="flexColStart detail">
                     <span className="primaryText">Video Call</span>
@@ -64,7 +64,7 @@ const Contact = () => {
               <div className="flexColCenter mode">
                 <div className="flexStart">
                   <div className="flexCenter icon">
-                    <HiChatBubbleBottomCenter size={25} />
+                    <HiChatBubbleBottomCenter size={25}  />
                   </div>
                   <div className="flexColStart detail">
                     <span className="primaryText">Message</span>
