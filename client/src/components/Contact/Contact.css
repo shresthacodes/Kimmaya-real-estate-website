@@ -27,8 +27,8 @@
 }
 .mode .button {
   width: 100%;
-  background: var(--lightBlue);
-  color: var(--blue);
+  background: var(--green);
+  color: white;
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -72,4 +72,9 @@
     .mode{
         width: 100%;
     }
+}
+
+/* In your CSS file */
+.icon {
+  color: green;
 }
