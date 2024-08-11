@@ -1,46 +1,48 @@
-/* AddPropertyModal.css */
-
+/* General Form Styles */
 .container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #06a141;
-}
-
-.alert {
-  margin-bottom: 20px;
-}
-
-.property-form {
-  background-color: #d4edda; /* Green background for the form */
-  padding: 20px;
+  background-color: #0f0f0f; /* Dark Green background */
+  padding: 1rem;
   border-radius: 8px;
+  color: white;
+  width: 560px;
+  height: 600px; /* White text color for better contrast */
 }
 
-.property-form .form-group label {
+/* Form Heading Styles */
+.form-label {
+  color: yellow; /* Yellow color for the form labels */
   font-weight: bold;
 }
 
-.property-form .form-control {
+/* Input Fields Styles */
+.form-control {
+  background-color: #e8f5e9; /* Light green background for input fields */
+  color: #333; /* Dark text color for input fields */
+  border: 1px solid #a5d6a7; /* Border with a light green color */
   border-radius: 4px;
-  color: black; /* Font color set to black */
 }
 
-.property-form .button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
+.form-control:focus {
+  background-color: #c8e6c9; /* Lighter green when focused */
+  border-color: #66bb6a; /* Slightly darker border when focused */
+  box-shadow: 0 0 0 0.2rem rgba(102, 187, 106, 0.25); /* Green shadow effect */
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #008000; /* Green button background */
+  border-color: #006400; /* Dark green border */
   color: white;
-  border: none;
+  font-weight: bold;
   border-radius: 4px;
-  cursor: pointer;
 }
 
-.property-form .button:hover {
-  background-color: #0056b3;
+.btn-primary:hover {
+  background-color: #006400; /* Darker green on hover */
+  border-color: #004d00; /* Darker border on hover */
+}
+
+/* Margin Bottom for Rows */
+.mb-3 {
+  margin-bottom: 1.5rem;
 }

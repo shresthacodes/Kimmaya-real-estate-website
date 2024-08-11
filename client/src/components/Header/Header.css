@@ -51,11 +51,14 @@
 
 /* Add this to your existing CSS */
 .h-menu a,
-.h-menu .nav-link {
-  color: green;
+.h-menu .nav-link,
+.al {
+  color: var(--secondary);
+  text-decoration: none;
 }
 
 .h-menu a:hover,
-.h-menu .nav-link:hover {
+.h-menu .nav-link:hover,
+.al:hover {
   color: darkgreen; /* Optional: Darker green on hover */
 }

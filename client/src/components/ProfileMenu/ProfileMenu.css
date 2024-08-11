@@ -1,4 +1,3 @@
-/* Add this CSS for basic styling */
 .profile-menu {
   position: relative;
   display: inline-block;
@@ -16,11 +15,20 @@
 
 .dropdown {
   position: absolute;
-  top: 50px;
-  right: 0;
-
+  top: 100%;
+  left: 0;
+  background-color: #90a78d;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  display: block; /* Ensure it's visible when open */
+  opacity: 0; /* Start hidden */
+  visibility: hidden; /* Start hidden */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.profile-menu .dropdown {
+  opacity: 1; /* Make it visible */
+  visibility: visible; /* Ensure it's visible */
 }
 
 .menu-item {
@@ -29,5 +37,5 @@
 }
 
 .menu-item:hover {
-  border: 1px solid #90a78d;
+  border: 1px solid #080808;
 }

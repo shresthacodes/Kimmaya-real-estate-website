@@ -1,190 +1,183 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Container, Form, Button, Alert } from "react-bootstrap";
-import { FaTrain, FaRoad, FaCity } from "react-icons/fa";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { createResidency } from "../../utils/api";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 import "./AddPropertyModal.css";
 
-const AddPropertyModal = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState(null);
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [railwayStation, setRailwayStation] = useState("");
-  const [highway, setHighway] = useState("");
-  const [cityDistance, setCityDistance] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+const AddPropertyForm = ({ userEmail, token }) => {
+  const [property, setProperty] = useState({
+    title: "",
+    description: "",
+    price: "",
+    image: "",
+    address: "",
+    city: "",
+    facilities: [],
+    userEmail: userEmail,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProperty((prev) => ({
+      ...prev,
+      [name]: name === "price" ? parseInt(value) || "" : value,
+    }));
+  };
+
+  const handleFacilitiesChange = (e) => {
+    const facilities = e.target.value.split(",").map((item) => item.trim());
+    setProperty((prev) => ({ ...prev, facilities }));
+  };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const uploadWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "domlafuvw",
+        uploadPreset: "Kimmaya",
+        sources: ["local"],
+        showAdvancedOptions: false,
+        cropping: false,
+        multiple: false,
+        theme: "minimal",
+      },
+      (error, result) => {
+        if (result.event === "success") {
+          setProperty((prev) => ({
+            ...prev,
+            image: result.info.secure_url,
+          }));
+          toast.success("Image uploaded successfully!", {
+            position: "bottom-right",
+          });
+        }
+      }
+    );
+
+    uploadWidget.open();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare the form data
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("address", address);
-    formData.append("city", city);
-    formData.append(
-      "facilities",
-      JSON.stringify({
-        railwayStation,
-        highway,
-        city: cityDistance,
-      })
-    );
-    formData.append("userEmail", userEmail);
-    if (image) {
-      formData.append("image", image);
-    }
-
     try {
-      const response = await axios.post("/property/create", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      await createResidency(property, token);
+      toast.success("Property added successfully!", {
+        position: "bottom-right",
       });
-      console.log(response.data);
-      setSuccess("Property successfully added!");
-      setError(null);
-      // Clear form fields after successful submission
-      setTitle("");
-      setDescription("");
-      setPrice("");
-      setImage(null);
-      setAddress("");
-      setCity("");
-      setRailwayStation("");
-      setHighway("");
-      setCityDistance("");
-      setUserEmail("");
+
+      // Reset the form after submission
+      setProperty({
+        title: "",
+        description: "",
+        price: "",
+        image: "",
+        address: "",
+        city: "",
+        facilities: [],
+        userEmail: userEmail,
+      });
     } catch (error) {
       console.error("Error adding property:", error);
-      setError("Error adding property. Please try again.");
-      setSuccess(null);
+      toast.error("Failed to add property. Please try again.", {
+        position: "bottom-right",
+      });
     }
   };
 
   return (
-    <Container className="my-4">
-      <h2>Add New Property</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      {success && <Alert variant="success">{success}</Alert>}
-      <Form onSubmit={handleSubmit} className="property-form">
-        <Form.Group controlId="title">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </Form.Group>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={property.title}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type="number"
+                name="price"
+                value={property.price}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <Form.Group controlId="description">
+        <Form.Group className="mb-3">
           <Form.Label>Description</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+            value={property.description}
+            onChange={handleChange}
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="price">
-          <Form.Label>Price</Form.Label>
+        <Row>
+          <Col md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                type="text"
+                name="address"
+                value={property.address}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                name="city"
+                value={property.city}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Facilities (comma-separated)</Form.Label>
           <Form.Control
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
+            type="text"
+            value={property.facilities.join(", ")}
+            onChange={handleFacilitiesChange}
           />
         </Form.Group>
 
-        <Form.Group controlId="image">
+        <Form.Group className="mb-3">
           <Form.Label>Image</Form.Label>
-          <Form.Control
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          <Button variant="secondary" onClick={handleImageChange}>
+            Upload Image
+          </Button>
+          {property.image && (
+            <CloudinaryContext cloudName="YOUR_CLOUD_NAME">
+              <Image publicId={property.image}>
+                <Transformation width="200" crop="scale" />
+              </Image>
+            </CloudinaryContext>
+          )}
         </Form.Group>
 
-        <Form.Group controlId="address">
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="city">
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="facilities">
-          <Form.Label>Facilities</Form.Label>
-          <div className="facilities">
-            <div className="facility">
-              <FaTrain size={20} color="#1F3E72" />
-              <Form.Control
-                type="text"
-                placeholder="Distance to Railway Station"
-                value={railwayStation}
-                onChange={(e) => setRailwayStation(e.target.value)}
-                required
-              />
-            </div>
-            <div className="facility">
-              <FaRoad size={20} color="#1F3E72" />
-              <Form.Control
-                type="text"
-                placeholder="Distance to Highway"
-                value={highway}
-                onChange={(e) => setHighway(e.target.value)}
-                required
-              />
-            </div>
-            <div className="facility">
-              <FaCity size={20} color="#1F3E72" />
-              <Form.Control
-                type="text"
-                placeholder="Distance to City"
-                value={cityDistance}
-                onChange={(e) => setCityDistance(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="userEmail">
-          <Form.Label>Your Email</Form.Label>
-          <Form.Control
-            type="email"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Button className="button" variant="primary" type="submit">
+        <Button variant="primary" type="submit">
           Add Property
         </Button>
       </Form>
@@ -192,4 +185,4 @@ const AddPropertyModal = () => {
   );
 };
 
-export default AddPropertyModal;
+export default AddPropertyForm;

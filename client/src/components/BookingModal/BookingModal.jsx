@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useMutation } from "react-query";
-
 import { bookVisit } from "../../utils/api.js";
 import { toast } from "react-toastify";
 import dayjs from "dayjs";
@@ -10,23 +9,35 @@ import UserDetailContext from "../Context/UserDetailContext.js";
 const BookingModal = ({ opened, setOpened, email, propertyId }) => {
   const [value, setValue] = useState(null);
   const {
-    userDetails: { token },
+    userDetails: { token, bookings },
     setUserDetails,
   } = useContext(UserDetailContext);
+
+  useEffect(() => {
+    // Read bookings from local storage and set the state
+    const savedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    setUserDetails((prev) => ({
+      ...prev,
+      bookings: savedBookings,
+    }));
+  }, [setUserDetails]);
 
   const handleBookingSuccess = () => {
     toast.success("You have booked your visit", {
       position: "bottom-right",
     });
+
+    const newBooking = {
+      id: propertyId,
+      date: dayjs(value).format("DD/MM/YYYY"),
+    };
+
+    const updatedBookings = [...(bookings || []), newBooking];
+    localStorage.setItem("bookings", JSON.stringify(updatedBookings)); // Save to local storage
+
     setUserDetails((prev) => ({
       ...prev,
-      bookings: [
-        ...prev.bookings,
-        {
-          id: propertyId,
-          date: dayjs(value).format("DD/MM/YYYY"),
-        },
-      ],
+      bookings: updatedBookings,
     }));
   };
 

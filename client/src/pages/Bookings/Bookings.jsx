@@ -34,30 +34,27 @@ const Bookings = () => {
       </div>
     );
   }
+
+  // Filter properties based on bookings and search filter
+  const filteredProperties = data
+    .filter((property) =>
+      bookings.map((booking) => booking.id).includes(property.id)
+    )
+    .filter(
+      (property) =>
+        property.title.toLowerCase().includes(filter.toLowerCase()) ||
+        property.city.toLowerCase().includes(filter.toLowerCase()) ||
+        property.country.toLowerCase().includes(filter.toLowerCase())
+    );
+
   return (
     <div className="wrapper">
       <div className="flexColCenter paddings innerWidth properties-container">
         <SearchBar filter={filter} setFilter={setFilter} />
-
         <div className="paddings flexCenter properties">
-          {
-            // data.map((card, i)=> (<PropertyCard card={card} key={i}/>))
-
-            data
-              .filter((property) =>
-                bookings.map((booking) => booking.id).includes(property.id)
-              )
-
-              .filter(
-                (property) =>
-                  property.title.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.city.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.country.toLowerCase().includes(filter.toLowerCase())
-              )
-              .map((card, i) => (
-                <PropertyCard card={card} key={i} />
-              ))
-          }
+          {filteredProperties.map((card, i) => (
+            <PropertyCard card={card} key={i} />
+          ))}
         </div>
       </div>
     </div>

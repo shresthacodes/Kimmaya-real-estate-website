@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import "./ProfileMenu.css";
 
 const ProfileMenu = ({ user, logout }) => {
@@ -25,8 +24,13 @@ const ProfileMenu = ({ user, logout }) => {
 
   return (
     <div ref={menuRef} className="profile-menu">
-      <div onClick={toggleMenu} className="avatar">
-        <img src={user?.picture} alt="user image" />
+      <div
+        onClick={toggleMenu}
+        className="avatar"
+        aria-expanded={menuOpen}
+        aria-haspopup="true"
+      >
+        <img src={user?.picture} alt="user profile" />
       </div>
       {menuOpen && (
         <div className="dropdown">
@@ -48,7 +52,6 @@ const ProfileMenu = ({ user, logout }) => {
           >
             Bookings
           </div>
-
           <div
             className="menu-item"
             onClick={() => {
