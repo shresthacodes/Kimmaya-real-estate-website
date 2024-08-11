@@ -12,6 +12,8 @@ import Property from "./pages/Property/Property";
 import UserDetailContext from "./components/Context/UserDetailContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddPropertyModal from "./components/AddPropertyModal/AddPropertyModal";
+import Bookings from "./pages/Bookings/Bookings";
+import Favourites from "./pages/Favourites/Favourites";
 // Import the Chatbot component
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
                   <Route path=":propertyId" element={<Property />} />
                 </Route>
                 <Route path="property/create" element={<AddPropertyModal />} />
+                <Route path="/bookings" element={<Bookings />} />
+                <Route path="/favourites" element={<Favourites />} />
               </Route>
             </Routes>
           </Suspense>

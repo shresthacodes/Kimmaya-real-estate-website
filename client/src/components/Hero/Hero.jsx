@@ -1,8 +1,9 @@
 import "./Hero.css";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import Searchbar from "../SearchBar/SearchBar";
+
 import Chatbot from "../Chatbot/Chatbot";
+import Searchbar from "../SearchBar/SearchBar";
 
 const Hero = () => {
   return (
