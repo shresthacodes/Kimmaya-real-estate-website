@@ -48,6 +48,7 @@ const ProfileMenu = ({ user, logout }) => {
           >
             Bookings
           </div>
+
           <div
             className="menu-item"
             onClick={() => {

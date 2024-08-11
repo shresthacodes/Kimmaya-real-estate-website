@@ -2,6 +2,8 @@ import "./Hero.css";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import Searchbar from "../SearchBar/SearchBar";
+import Chatbot from "../Chatbot/Chatbot";
+
 const Hero = () => {
   return (
     <section className="hero-wrapper">
@@ -55,6 +57,7 @@ const Hero = () => {
         </div>
 
         {/* right side */}
+
         <div className="flexCenter hero-right">
           <motion.div
             initial={{ x: "7rem", opacity: 0 }}
@@ -67,6 +70,7 @@ const Hero = () => {
           >
             <img src="./farm.jpg" alt="houses" />
           </motion.div>
+          <Chatbot />
         </div>
       </div>
     </section>

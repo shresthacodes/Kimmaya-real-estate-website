@@ -27,6 +27,7 @@
     "jwks-rsa": "^3.1.0",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.427.0",
     "mongoose": "^8.5.2",
     "react": "^18.3.1",
     "react-accessible-accordion": "^5.0.0",
@@ -35,6 +36,7 @@
     "react-countup": "^6.4.2",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.2",
     "react-icons": "^5.2.1",
     "react-leaflet": "4.2.1",
     "react-outside-click-handler": "^1.3.0",
@@ -42,7 +44,8 @@
     "react-router-dom": "^6.26.0",
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.5",
-    "swiper": "^9.1.1"
+    "swiper": "^9.1.1",
+    "world-countries": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

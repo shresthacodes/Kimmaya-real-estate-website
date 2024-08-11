@@ -1,0 +1,46 @@
+/* AddPropertyModal.css */
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #06a141;
+}
+
+.alert {
+  margin-bottom: 20px;
+}
+
+.property-form {
+  background-color: #d4edda; /* Green background for the form */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.property-form .form-group label {
+  font-weight: bold;
+}
+
+.property-form .form-control {
+  border-radius: 4px;
+  color: black; /* Font color set to black */
+}
+
+.property-form .button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.property-form .button:hover {
+  background-color: #0056b3;
+}

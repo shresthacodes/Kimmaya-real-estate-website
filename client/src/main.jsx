@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { MantineProvider } from "@mantine/core";
+import Chatbot from "./components/Chatbot/Chatbot";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     >
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <App />
+        
       </MantineProvider>
     </Auth0Provider>
   </React.StrictMode>

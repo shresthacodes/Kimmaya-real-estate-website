@@ -11,6 +11,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Property from "./pages/Property/Property";
 import UserDetailContext from "./components/Context/UserDetailContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AddPropertyModal from "./components/AddPropertyModal/AddPropertyModal";
+// Import the Chatbot component
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -32,6 +35,7 @@ function App() {
                   <Route index element={<Properties />} />
                   <Route path=":propertyId" element={<Property />} />
                 </Route>
+                <Route path="property/create" element={<AddPropertyModal />} />
               </Route>
             </Routes>
           </Suspense>

@@ -2,10 +2,12 @@
   z-index: 99;
   position: sticky;
   top: 0;
+  background: transparent; /* Set background to transparent */
 }
+
 .h-container {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
   color: var(--secondary);
   justify-content: space-between;
 }
@@ -13,9 +15,11 @@
 .h-menu {
   gap: 2rem;
 }
+
 .h-menu > *:hover {
   cursor: pointer;
 }
+
 .menu-icon {
   display: none;
 }
@@ -23,7 +27,8 @@
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
-  } 
+  }
+
   .h-menu {
     color: var(--black);
     position: absolute;
@@ -41,6 +46,7 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   }
 }
+
 /* header.css */
 
 /* Add this to your existing CSS */

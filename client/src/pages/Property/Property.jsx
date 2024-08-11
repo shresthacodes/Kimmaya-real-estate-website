@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Property.css";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
-import { getProperty } from "../../utils/api";
+import { getProperty, removeBooking } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
 
-import { MdLocationPin, MdMeetingRoom } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
 import { FaTrain, FaRoad, FaCity } from "react-icons/fa";
-import { FaShower } from "react-icons/fa";
 import Map from "../../components/Map/Map";
 import { useAuth0 } from "@auth0/auth0-react";
 import useAuthCheck from "../../hooks/useAuthCheck";
 import BookingModal from "../../components/BookingModal/BookingModal";
 import Heart from "../../components/Heart/Heart";
+import { toast } from "react-toastify";
+import UserDetailContext from "../../components/Context/UserDetailContext";
+
 const Property = () => {
   const { pathname } = useLocation();
   const id = pathname.split("/").splice(-1)[0];
@@ -23,6 +25,27 @@ const Property = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const { validateLogin } = useAuthCheck();
   const { user } = useAuth0();
+  const {
+    userDetails: { token, bookings },
+    setUserDetails,
+  } = useContext(UserDetailContext);
+
+  const isBooked = bookings?.map((booking) => booking.id).includes(id);
+
+  const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
+    mutationFn: () => removeBooking(id, user?.email, token),
+    onSuccess: () => {
+      setUserDetails((prev) => ({
+        ...prev,
+        bookings: prev.bookings.filter((booking) => booking?.id !== id),
+      }));
+
+      toast.success("Booking cancelled", { position: "bottom-right" });
+    },
+    onError: () => {
+      toast.error("Failed to cancel booking", { position: "bottom-right" });
+    },
+  });
 
   if (isLoading) {
     return (
@@ -43,6 +66,7 @@ const Property = () => {
       </div>
     );
   }
+
   return (
     <div className="wrapper">
       <div className="flexColStart paddings innerWidth property-container">
@@ -94,14 +118,31 @@ const Property = () => {
                 {data?.address} {data?.city} {data?.country}
               </span>
             </div>
-            <button
-              className="button"
-              onClick={() => {
-                validateLogin() && setModalOpened(true);
-              }}
-            >
-              Book your Visit
-            </button>
+
+            {isBooked ? (
+              <>
+                <button
+                  className="button"
+                  onClick={() => cancelBooking()}
+                  disabled={cancelling}
+                >
+                  {cancelling ? "Cancelling..." : "Cancel Booking"}
+                </button>
+                <span>
+                  Your visit is booked for date:{" "}
+                  {bookings?.find((booking) => booking?.id === id)?.date}
+                </span>
+              </>
+            ) : (
+              <button
+                className="button"
+                onClick={() => {
+                  validateLogin() && setModalOpened(true);
+                }}
+              >
+                Book your Visit
+              </button>
+            )}
 
             <BookingModal
               opened={modalOpened}
