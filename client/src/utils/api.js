@@ -154,8 +154,7 @@ export const getAllBookings = async (email, token) => {
   }
 };
 
-export const createResidency = async (data, token) => {
-  console.log(data);
+export const createResidency = async (data, token) => {  console.log("Data:", data); // Add this to verify the data being sent
   try {
     const res = await api.post(
       `/property/create`,
@@ -168,8 +167,8 @@ export const createResidency = async (data, token) => {
         },
       }
     );
-    return res.data;
   } catch (error) {
+    console.error("API call failed:", error.response || error);
     throw error;
   }
 };

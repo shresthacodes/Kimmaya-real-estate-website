@@ -11,9 +11,14 @@ const AddPropertyForm = ({ userEmail, token }) => {
     description: "",
     price: "",
     image: "",
+    imageUrl: "",
     address: "",
     city: "",
-    facilities: [],
+    facilities: {
+      railwayStation: "",
+      highway: "",
+      city: "",
+    },
     userEmail: userEmail,
   });
 
@@ -26,8 +31,14 @@ const AddPropertyForm = ({ userEmail, token }) => {
   };
 
   const handleFacilitiesChange = (e) => {
-    const facilities = e.target.value.split(",").map((item) => item.trim());
-    setProperty((prev) => ({ ...prev, facilities }));
+    const { name, value } = e.target;
+    setProperty((prev) => ({
+      ...prev,
+      facilities: {
+        ...prev.facilities,
+        [name]: value,
+      },
+    }));
   };
 
   const handleImageChange = (e) => {
@@ -60,8 +71,11 @@ const AddPropertyForm = ({ userEmail, token }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Prioritize uploaded image over URL if both are provided
+    const imageToSave = property.image || property.imageUrl;
+
     try {
-      await createResidency(property, token);
+      await createResidency({ ...property, image: imageToSave }, token);
       toast.success("Property added successfully!", {
         position: "bottom-right",
       });
@@ -72,9 +86,14 @@ const AddPropertyForm = ({ userEmail, token }) => {
         description: "",
         price: "",
         image: "",
+        imageUrl: "",
         address: "",
         city: "",
-        facilities: [],
+        facilities: {
+          railwayStation: "",
+          highway: "",
+          city: "",
+        },
         userEmail: userEmail,
       });
     } catch (error) {
@@ -154,27 +173,64 @@ const AddPropertyForm = ({ userEmail, token }) => {
           </Col>
         </Row>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Facilities (comma-separated)</Form.Label>
-          <Form.Control
-            type="text"
-            value={property.facilities.join(", ")}
-            onChange={handleFacilitiesChange}
-          />
-        </Form.Group>
+        <Row>
+          <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>Railway Station</Form.Label>
+              <Form.Control
+                type="text"
+                name="railwayStation"
+                value={property.facilities.railwayStation}
+                onChange={handleFacilitiesChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>Highway</Form.Label>
+              <Form.Control
+                type="text"
+                name="highway"
+                value={property.facilities.highway}
+                onChange={handleFacilitiesChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group className="mb-3">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                name="city"
+                value={property.facilities.city}
+                onChange={handleFacilitiesChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
         <Form.Group className="mb-3">
-          <Form.Label>Image</Form.Label>
+          <Form.Label>Image Upload</Form.Label>
           <Button variant="secondary" onClick={handleImageChange}>
             Upload Image
           </Button>
           {property.image && (
-            <CloudinaryContext cloudName="YOUR_CLOUD_NAME">
+            <CloudinaryContext cloudName="domlafuvw">
               <Image publicId={property.image}>
                 <Transformation width="200" crop="scale" />
               </Image>
             </CloudinaryContext>
           )}
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Or Enter Image URL</Form.Label>
+          <Form.Control
+            type="text"
+            name="imageUrl"
+            value={property.imageUrl}
+            onChange={handleChange}
+          />
         </Form.Group>
 
         <Button variant="primary" type="submit">

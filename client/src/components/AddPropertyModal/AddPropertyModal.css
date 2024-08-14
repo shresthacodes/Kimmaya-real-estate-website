@@ -5,12 +5,12 @@
   border-radius: 8px;
   color: white;
   width: 560px;
-  height: 600px; /* White text color for better contrast */
+  height: auto; /* Auto height to accommodate content */
 }
 
 /* Form Heading Styles */
 .form-label {
-  color: yellow; /* Yellow color for the form labels */
+  color: rgb(194, 194, 194); /* Yellow color for the form labels */
   font-weight: bold;
 }
 

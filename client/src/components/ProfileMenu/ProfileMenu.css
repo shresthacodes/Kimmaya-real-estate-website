@@ -5,6 +5,8 @@
 
 .avatar {
   cursor: pointer;
+  display: flex;
+  align-items: center; /* Ensures the avatar is centered vertically */
 }
 
 .avatar img {
@@ -15,20 +17,20 @@
 
 .dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 50px; /* Adjust as needed to position the dropdown below the avatar */
+  right: 0; /* Aligns the dropdown to the right of the avatar */
   background-color: #90a78d;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  display: block; /* Ensure it's visible when open */
-  opacity: 0; /* Start hidden */
-  visibility: hidden; /* Start hidden */
+  display: block;
+  opacity: 0;
+  visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .profile-menu .dropdown {
-  opacity: 1; /* Make it visible */
-  visibility: visible; /* Ensure it's visible */
+  opacity: 1;
+  visibility: visible;
 }
 
 .menu-item {

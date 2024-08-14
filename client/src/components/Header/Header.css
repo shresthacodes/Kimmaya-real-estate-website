@@ -31,7 +31,7 @@
 
   .h-menu {
     color: var(--black);
-    position: absolute;
+    position: relative;
     gap: 2rem;
     font-weight: 500;
     flex-direction: column;
@@ -62,4 +62,3 @@
 .al:hover {
   color: darkgreen; /* Optional: Darker green on hover */
 }
-

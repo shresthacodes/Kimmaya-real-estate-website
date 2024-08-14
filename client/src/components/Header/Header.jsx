@@ -42,7 +42,9 @@ const Header = () => {
 
             {/* add property link */}
             {isAuthenticated && (
-              <div className="al" onClick={handleAddPropertyClick}>Add Property</div>
+              <div className="al" onClick={handleAddPropertyClick}>
+                Add Property
+              </div>
             )}
 
             {/* login button */}

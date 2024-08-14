@@ -3,7 +3,7 @@ import "./Contact.css";
 import { MdCall } from "react-icons/md";
 import { MdVideoCall } from "react-icons/md";
 import { BsFillChatDotsFill } from "react-icons/bs";
-import {HiChatBubbleBottomCenter} from 'react-icons/hi2'
+import { HiChatBubbleBottomCenter } from "react-icons/hi2";
 const Contact = () => {
   return (
     <div id="contact-us" className="c-wrapper">
@@ -13,7 +13,9 @@ const Contact = () => {
           <span className="orangeText">Our Contacts</span>
           <span className="primaryText">Easy to contact us</span>
           <span className="secondaryText">
-          We’re here to assist you with any inquiries or support you need. Reach out to us for personalized assistance, and let us help you find the ideal farmland and farm products to enhance your life.{" "}
+            We’re here to assist you with any inquiries or support you need.
+            Reach out to us for personalized assistance, and let us help you
+            find the ideal farmland and farm products to enhance your life.{" "}
           </span>
 
           <div className="flexColStart contactModes">
@@ -26,10 +28,9 @@ const Contact = () => {
                   </div>
                   <div className="flexColStart detail">
                     <span className="primaryText">Call</span>
-                    <span className="secondaryText">021 123 145 14</span>
+                    <span className="secondaryText">+91 9886682639</span>
                   </div>
                 </div>
-                <div className="flexCenter button">Call now</div>
               </div>
 
               <div className="flexColCenter mode">
@@ -38,7 +39,7 @@ const Contact = () => {
                     <BsFillChatDotsFill size={25} />
                   </div>
                   <div className="flexColStart detail">
-                    <span className="primaryText">Chat</span>
+                    <span className="primaryText">Chat / Whatsapp</span>
                     <span className="secondaryText">021 123 145 14</span>
                   </div>
                 </div>
@@ -47,33 +48,6 @@ const Contact = () => {
             </div>
 
             {/* second row */}
-            <div className="flexStart row">
-              <div className="flexColCenter mode">
-                <div className="flexStart">
-                  <div className="flexCenter icon">
-                    <MdVideoCall size={25} />
-                  </div>
-                  <div className="flexColStart detail">
-                    <span className="primaryText">Video Call</span>
-                    <span className="secondaryText">021 123 145 14</span>
-                  </div>
-                </div>
-                <div className="flexCenter button">Video Call now</div>
-              </div>
-
-              <div className="flexColCenter mode">
-                <div className="flexStart">
-                  <div className="flexCenter icon">
-                    <HiChatBubbleBottomCenter size={25}  />
-                  </div>
-                  <div className="flexColStart detail">
-                    <span className="primaryText">Message</span>
-                    <span className="secondaryText">021 123 145 14</span>
-                  </div>
-                </div>
-                <div className="flexCenter button">Message now</div>
-              </div>
-            </div>
           </div>
         </div>
 
