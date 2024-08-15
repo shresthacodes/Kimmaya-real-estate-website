@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AddPropertyModal from "./components/AddPropertyModal/AddPropertyModal";
 import Bookings from "./pages/Bookings/Bookings";
 import Favourites from "./pages/Favourites/Favourites";
-import UserDetailContext from "./components/Context/UserDetailContext";
+import UserDetailContext from "./Context/UserDetailContext";
 // Import the Chatbot component
 
 function App() {
