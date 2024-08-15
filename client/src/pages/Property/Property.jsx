@@ -13,7 +13,7 @@ import useAuthCheck from "../../hooks/useAuthCheck";
 import BookingModal from "../../components/BookingModal/BookingModal";
 import Heart from "../../components/Heart/Heart";
 import { toast } from "react-toastify";
-import UserDetailContext from "../../components/Context/UserDetailContext";
+import UserDetailContext from "../../Context/UserDetailContext";
 
 const Property = () => {
   const { pathname } = useLocation();

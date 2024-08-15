@@ -3,7 +3,7 @@ import { AiFillHeart } from "react-icons/ai";
 import useAuthCheck from "../../hooks/useAuthCheck";
 import { useMutation } from "react-query";
 import { useAuth0 } from "@auth0/auth0-react";
-import UserDetailContext from "../Context/UserDetailContext";
+import UserDetailContext from "../../Context/UserDetailContext";
 import { checkFavourites, updateFavourites } from "../../utils/common";
 import { toFav } from "../../utils/api";
 
