@@ -2,7 +2,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 export const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://kimmaya-real-estate-website.vercel.app/api",
 });
 export const getAllProperties = async () => {
   try {
@@ -154,7 +154,8 @@ export const getAllBookings = async (email, token) => {
   }
 };
 
-export const createResidency = async (data, token) => {  console.log("Data:", data); // Add this to verify the data being sent
+export const createResidency = async (data, token) => {
+  console.log("Data:", data); // Add this to verify the data being sent
   try {
     const res = await api.post(
       `/property/create`,
