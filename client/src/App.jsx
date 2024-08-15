@@ -9,11 +9,12 @@ import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import Property from "./pages/Property/Property";
-import UserDetailContext from "./components/Context/UserDetailContext";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddPropertyModal from "./components/AddPropertyModal/AddPropertyModal";
 import Bookings from "./pages/Bookings/Bookings";
 import Favourites from "./pages/Favourites/Favourites";
+import UserDetailContext from "./components/Context/UserDetailContext";
 // Import the Chatbot component
 
 function App() {
