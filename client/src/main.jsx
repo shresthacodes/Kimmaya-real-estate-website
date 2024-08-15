@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain="dev-113517yyeno8vowx.us.auth0.com"
       clientId="yhr7XONhcdhwUy66jtZvUfiMVwIFdaDG"
       authorizationParams={{
-        redirect_uri: "http://localhost:5173",
+        redirect_uri: "https://kimmaya-real-estate-website.vercel.app",
       }}
       audience="http://localhost:3000"
       scope="openid profile email"
