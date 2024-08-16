@@ -2,7 +2,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 export const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://kimmaya-real-estate-website.vercel.app/api",
 });
 export const getAllProperties = async () => {
   try {

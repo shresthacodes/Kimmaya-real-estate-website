@@ -23,7 +23,7 @@ const Layout = () => {
       try {
         const res = await getAccessTokenWithPopup({
           authorizationParams: {
-            audience: "http://localhost:3000/",
+            audience: "https://kimmaya-real-estate-website.vercel.app/",
             scope: "openid profile email",
           },
         });
